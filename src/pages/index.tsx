@@ -23,18 +23,14 @@ function convertHumanToDog(humanAge) {
 
 function convertHumanToSandwich(humanAge) {
   if (humanAge === 0) return 0;
-  if (humanAge > 0) {
-    return roundToFirstDecimal(-92.543 + (27.026 * Math.log(humanAge)));
-  }
-  return roundToFirstDecimal(-92.543 + (27.026 * Math.log(humanAge * -1))) * -1;
+  // Lifespan of a sandwich is 30 days, human is 77.
+  // 77/30 = 2.566
+  return roundToFirstDecimal(humanAge / 2.566);
 }
 
 function convertSandwichToHuman(sandwichAge) {
   if (sandwichAge === 0) return 0;
-  if (sandwichAge) {
-    roundToFirstDecimal(Math.E ** (((1000 * sandwichAge) + 92543) / 27026));
-  }
-  return roundToFirstDecimal(Math.E ** (((1000 * (sandwichAge * -1)) + 92543) / 27026)) * -1;
+  roundToFirstDecimal(sandwichAge * 2.566)
 }
 
 export default function Home() {

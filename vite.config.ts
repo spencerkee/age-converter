@@ -3,7 +3,7 @@ import Pages from 'vite-plugin-pages';
 import solidPlugin from 'vite-plugin-solid';
 
 export default defineConfig({
-  base: '/age_converter/',
+  base: '/',
   plugins: [
     Pages({
       dirs: ['src/pages'],
