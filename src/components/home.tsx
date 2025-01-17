@@ -1,5 +1,5 @@
 import { createSignal } from 'solid-js';
-import AgeCounter from "../components/ageCounter";
+import AgeCounter from "./ageCounter";
 
 function roundToFirstDecimal(number) {
   return Math.round(number * 10) / 10;
@@ -30,7 +30,7 @@ function convertHumanToSandwich(humanAge) {
 
 function convertSandwichToHuman(sandwichAge) {
   if (sandwichAge === 0) return 0;
-  roundToFirstDecimal(sandwichAge * 2.566)
+  return roundToFirstDecimal(sandwichAge * 2.566);
 }
 
 export default function Home() {

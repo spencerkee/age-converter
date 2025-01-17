@@ -12,7 +12,18 @@ export default function AgeCounter(props) {
             >
                 -
             </button>
-            <output class="p-10px">{props.name}: {props.ageConverter(props.age())} {props.unitName}</output>
+            <output class="p-10px">{props.name}: </output>
+            <input
+                type="text"
+                value={props.ageConverter(props.age())}
+                onChange={(e) => {
+                    let revertedAge = props.ageReverter(Number(e.currentTarget.value));
+                    props.setAge(revertedAge);
+                }}
+                size="4"
+            />
+            <output class="p-10px">{props.unitName}</output>
+
 
             <button
                 type="button"
