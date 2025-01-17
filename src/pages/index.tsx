@@ -1,56 +1,57 @@
-import { createEffect, createSignal } from 'solid-js';
+import { createSignal } from 'solid-js';
 import AgeCounter from "../components/ageCounter";
 
 function roundToFirstDecimal(number) {
   return Math.round(number * 10) / 10;
 }
 
-function convertDogYearsToHumanYears(dogAge) {
+function convertDogToHuman(dogAge) {
   if (dogAge === 0) return 0;
-  let humanAge = 16 * Math.log(dogAge) + 31;
-  // Round to the first decimal place./*  */
-  return roundToFirstDecimal(humanAge);
+  if (dogAge > 0) {
+    return roundToFirstDecimal(16 * Math.log(dogAge) + 31);
+  }
+  return roundToFirstDecimal(16 * Math.log(dogAge * -1) + 31) * -1;
 }
 
-function convertHumanYearsToDogYears(humanAge) {
+function convertHumanToDog(humanAge) {
   if (humanAge === 0) return 0;
-  let dogAge = Math.E ** ((humanAge - 31) / 16);
-  return roundToFirstDecimal(dogAge);
+  if (humanAge > 0) {
+    return roundToFirstDecimal(Math.E ** ((humanAge - 31) / 16));
+  }
+  return roundToFirstDecimal(Math.E ** (((humanAge * -1) - 31) / 16)) * -1;
 }
 
-function convertHumanYearsToSandwichDays(humanAge) {
+function convertHumanToSandwich(humanAge) {
   if (humanAge === 0) return 0;
-  let sandwichDays = -92.543 + (27.026 * Math.log(humanAge))
-  return roundToFirstDecimal(sandwichDays);
+  if (humanAge > 0) {
+    return roundToFirstDecimal(-92.543 + (27.026 * Math.log(humanAge)));
+  }
+  return roundToFirstDecimal(-92.543 + (27.026 * Math.log(humanAge * -1))) * -1;
 }
 
-function convertSandwichDaysToHumanYears(sandwichAge) {
+function convertSandwichToHuman(sandwichAge) {
   if (sandwichAge === 0) return 0;
-  let humanAge = Math.E ** (((1000 * sandwichAge) + 92543) / 27026)
-  roundToFirstDecimal(humanAge);
+  if (sandwichAge) {
+    roundToFirstDecimal(Math.E ** (((1000 * sandwichAge) + 92543) / 27026));
+  }
+  return roundToFirstDecimal(Math.E ** (((1000 * (sandwichAge * -1)) + 92543) / 27026)) * -1;
 }
 
 export default function Home() {
   const [humanAge, setHumanAge] = createSignal(0);
-  const [dogAge, setDogAge] = createSignal(0);
-  // Sandwiches age in days, not years.
-  const [sandwichAge, setSandwichAge] = createSignal(0);
-
-  // Convert dog years to human years
-  createEffect(() => {
-    setHumanAge(convertDogYearsToHumanYears(dogAge()));
-  });
-
-  createEffect(() => {
-    setSandwichAge(convertHumanYearsToSandwichDays(humanAge()));
-  });
 
   return (
     <section class="bg-gray-100 text-gray-700 p-8">
       <h1 class="text-2xl font-bold">Convert between human, dog, and sandwich (pb&j) ages (badly)</h1>
-      <AgeCounter name="Human" unitName="years" age={humanAge()} setAge={setHumanAge} />
-      <AgeCounter name="Dog" unitName="years" age={dogAge()} setAge={setDogAge} />
-      <AgeCounter name="Sandwich" unitName="days" age={sandwichAge()} setAge={setSandwichAge} />
+      <AgeCounter name="Human (👨👩)" unitName="years" age={humanAge} setAge={setHumanAge}
+        ageConverter={a => a}
+        ageReverter={a => a} />
+      <AgeCounter name="Dog (🐶)" unitName="years" age={humanAge} setAge={setHumanAge}
+        ageConverter={a => convertHumanToDog(a)}
+        ageReverter={a => convertDogToHuman(a)} />
+      <AgeCounter name="Sandwich (🥜🍇)" unitName="days" age={humanAge} setAge={setHumanAge}
+        ageConverter={a => convertHumanToSandwich(a)}
+        ageReverter={a => convertSandwichToHuman(a)} />
 
     </section>
   );
