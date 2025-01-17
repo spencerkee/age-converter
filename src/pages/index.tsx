@@ -43,13 +43,13 @@ export default function Home() {
   return (
     <section class="bg-gray-100 text-gray-700 p-8">
       <h1 class="text-2xl font-bold">Convert between human, dog, and sandwich (pb&j) ages (badly)</h1>
-      <AgeCounter name="Human (👨👩)" unitName="years" age={humanAge} setAge={setHumanAge}
+      <AgeCounter name="Human" unitName="years" age={humanAge} setAge={setHumanAge}
         ageConverter={a => a}
         ageReverter={a => a} />
-      <AgeCounter name="Dog (🐶)" unitName="years" age={humanAge} setAge={setHumanAge}
+      <AgeCounter name="Dog" unitName="years" age={humanAge} setAge={setHumanAge}
         ageConverter={a => convertHumanToDog(a)}
         ageReverter={a => convertDogToHuman(a)} />
-      <AgeCounter name="Sandwich (🥜🍇)" unitName="days" age={humanAge} setAge={setHumanAge}
+      <AgeCounter name="Sandwich" unitName="days" age={humanAge} setAge={setHumanAge}
         ageConverter={a => convertHumanToSandwich(a)}
         ageReverter={a => convertSandwichToHuman(a)} />
     </section>
