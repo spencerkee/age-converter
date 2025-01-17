@@ -52,7 +52,6 @@ export default function Home() {
       <AgeCounter name="Sandwich (🥜🍇)" unitName="days" age={humanAge} setAge={setHumanAge}
         ageConverter={a => convertHumanToSandwich(a)}
         ageReverter={a => convertSandwichToHuman(a)} />
-
     </section>
   );
 }
