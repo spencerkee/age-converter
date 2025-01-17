@@ -3,7 +3,7 @@ import Pages from 'vite-plugin-pages';
 import solidPlugin from 'vite-plugin-solid';
 
 export default defineConfig({
-  base: '/',
+  base: '/home/',
   plugins: [
     Pages({
       dirs: ['src/pages'],
