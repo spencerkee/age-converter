@@ -26,11 +26,17 @@ function convertHumanToSandwich(humanAge) {
   // Lifespan of a sandwich is 30 days, human is 77.
   // 77/30 = 2.566
   return roundToFirstDecimal(humanAge / 2.566);
+  // return roundToFirstDecimal(
+  //   34.5 + ((0.492 - 34.5) / (1 + ((humanAge / 16.6) ** 1.32)))
+  // );
 }
 
 function convertSandwichToHuman(sandwichAge) {
   if (sandwichAge === 0) return 0;
   return roundToFirstDecimal(sandwichAge * 2.566);
+  // return roundToFirstDecimal(
+  //   16.6 * Math.pow(((-0.008 - sandwichAge) ** 25) / ((sandwichAge - 34) ** 25), 33)
+  // );
 }
 
 export default function Home() {
